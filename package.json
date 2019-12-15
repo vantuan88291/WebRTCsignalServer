@@ -1,0 +1,26 @@
+{
+  "author": "vantuan88291",
+  "license": "ISC",
+  "name": "socketserver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "scripts": {
+    "dev": "nodemon --exec babel-node src/index.js",
+    "build": "babel src --out-dir dist",
+    "start": "npm run build && node dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vantuan88291/SocketServer.git"
+  },
+  "dependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-es2015": "^6.18.0",
+    "express": "*",
+    "nodemon": "^1.11.0",
+    "socket.io": "*"
+  }
+}
