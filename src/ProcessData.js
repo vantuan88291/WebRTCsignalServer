@@ -26,7 +26,6 @@ class ProcessData {
         return -1
     }
     onCall = async (data) => {
-        console.log('from data')
         const jsData = await JSON.parse(data)
         const friend = await this.getFriend(jsData.model)
         if(friend) {
@@ -45,6 +44,21 @@ class ProcessData {
         const position = await this.isExistModel(model)
         await this.socket.splice(position, 1)
         console.log(`clear ${model}`)
+    }
+    startCall = (model) => {
+        const friend = this.getFriend(model)
+        console.log(`${friend.handshake.query.model} is calling`)
+
+        if(friend) {
+            friend.emit("inComing")
+        }
+    }
+    startAnswer = (model) => {
+        console.log(`${model} is answer`)
+        const friend = this.getFriend(model)
+        if(friend) {
+            friend.emit("onAnswerAccept")
+        }
     }
     onDisconnect = () => {
     }

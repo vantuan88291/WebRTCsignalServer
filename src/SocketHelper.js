@@ -36,6 +36,8 @@ class SocketHelper {
         socket.on('call', this.mSocket.onCall)
         socket.on('clearUser', this.mSocket.clearUser)
         socket.on('disconnect', this.onDisConnect)
+        socket.on('startCall', this.mSocket.startCall)
+        socket.on('startAnswer', this.mSocket.startAnswer)
         ///chat
         socket.on('getAllData', this.mSocketChat.emitAllData)
         socket.on('sendmsg', this.mSocketChat.onSendMsg)
