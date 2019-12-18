@@ -34,7 +34,7 @@ class ProcessData {
     }
     getFriend = (model) => {
         for (let i = 0; i < this.socket.length; i++) {
-            if (this.socket[i].handshake.query.model !== model) {
+            if (this.socket[i].handshake.query.model === model) {
                 return this.socket[i]
             }
         }
@@ -45,22 +45,26 @@ class ProcessData {
         await this.socket.splice(position, 1)
         console.log(`clear ${model}`)
     }
-    startCall = (model) => {
-        const friend = this.getFriend(model)
-        console.log(`${friend.handshake.query.model} is calling`)
-
+    startCall = async (data) => {
+        const jsData = await JSON.parse(data)
+        const friend = this.getFriend(jsData.answer)
+        console.log(`${jsData.call} is calling`)
         if(friend) {
-            friend.emit("inComing")
+            friend.emit("inComing", jsData.call)
         }
     }
-    startAnswer = (model) => {
-        console.log(`${model} is answer`)
-        const friend = this.getFriend(model)
+    startAnswer = async (data) => {
+        const jsData = await JSON.parse(data)
+        console.log(`${jsData.answer} is answer`)
+        const friend = this.getFriend(jsData.call)
+        console.log(`send it to ${friend.handshake.query.model}`)
+
         if(friend) {
             friend.emit("onAnswerAccept")
         }
     }
-    onDisconnect = () => {
+    onDisconnect = (socket) => {
+        this.clearUser(socket.handshake.query.model)
     }
 }
 module.exports = ProcessData

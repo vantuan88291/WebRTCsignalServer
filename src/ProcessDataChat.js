@@ -14,7 +14,7 @@ class ProcessDataChat {
 
     }
     onDisconnect = () => {
-        console.log('user left')
+
     }
     emitAllData = () => {
         this.socket.emit("allData", dataMsg)

@@ -26,16 +26,16 @@ class SocketHelper {
             res.send('Chat Server is running on port 3000')
         });
     }
-    onDisConnect = () => {
-        this.mSocket.onDisconnect()
+    onDisConnect = (socket) => {
+        this.mSocket.onDisconnect(socket)
         this.mSocketChat.onDisconnect()
     }
     listener = (socket) => {
-        console.log('new user join')
+        console.log(`${socket.handshake.query.model}  join`)
         this.mSocket.setSocket(socket)
         socket.on('call', this.mSocket.onCall)
         socket.on('clearUser', this.mSocket.clearUser)
-        socket.on('disconnect', this.onDisConnect)
+        socket.on('disconnect', () => this.onDisConnect(socket))
         socket.on('startCall', this.mSocket.startCall)
         socket.on('startAnswer', this.mSocket.startAnswer)
         ///chat
