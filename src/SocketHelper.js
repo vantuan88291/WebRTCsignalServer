@@ -38,6 +38,7 @@ class SocketHelper {
         socket.on('disconnect', () => this.onDisConnect(socket))
         socket.on('startCall', this.mSocket.startCall)
         socket.on('startAnswer', this.mSocket.startAnswer)
+        socket.on('endCall', this.mSocket.onEndCall)
         ///chat
         socket.on('getAllData', this.mSocketChat.emitAllData)
         socket.on('sendmsg', this.mSocketChat.onSendMsg)

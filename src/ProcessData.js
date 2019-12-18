@@ -63,6 +63,12 @@ class ProcessData {
             friend.emit("onAnswerAccept")
         }
     }
+    onEndCall = (model) => {
+        const friend = this.getFriend(model)
+        if(friend) {
+            friend.emit("onEndCall")
+        }
+    }
     onDisconnect = (socket) => {
         this.clearUser(socket.handshake.query.model)
     }
