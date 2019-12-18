@@ -43,12 +43,12 @@ class ProcessData {
     clearUser = async (model) => {
         const position = await this.isExistModel(model)
         await this.socket.splice(position, 1)
-        console.log(`clear ${model}`)
+        // console.log(`clear ${model}`)
     }
     startCall = async (data) => {
         const jsData = await JSON.parse(data)
         const friend = this.getFriend(jsData.answer)
-        console.log(`${jsData.call} is calling`)
+        // console.log(`${jsData.call} is calling`)
         if(friend) {
             friend.emit("inComing", jsData.call)
         }
@@ -57,7 +57,7 @@ class ProcessData {
         const jsData = await JSON.parse(data)
         console.log(`${jsData.answer} is answer`)
         const friend = this.getFriend(jsData.call)
-        console.log(`send it to ${friend.handshake.query.model}`)
+        // console.log(`send it to ${friend.handshake.query.model}`)
 
         if(friend) {
             friend.emit("onAnswerAccept")

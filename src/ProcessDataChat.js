@@ -10,7 +10,7 @@ class ProcessDataChat {
     onSendMsg = (data) => {
         dataMsg.push(data)
         this.socket.emit("newmsg", data)
-        console.log('msg', dataMsg)
+        // console.log('msg', dataMsg)
 
     }
     onDisconnect = () => {
