@@ -1,6 +1,5 @@
 import express from 'express'
 import { createServer } from 'http'
-import * as IO from 'socket.io'
 import ProcessData from './ProcessData'
 import ProcessDataChat from './ProcessDataChat'
 
@@ -15,7 +14,7 @@ class SocketHelper {
         this.mSocketChat = new ProcessDataChat()
         this.app = express()
         this.server = createServer(this.app)
-        this.io = IO.listen(this.server)
+        this.io = require('socket.io')(this.server)
         this.mSocketChat.setSocket(this.io)
     }
     showConnectFromWeb = () => {
