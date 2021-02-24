@@ -30,7 +30,7 @@ class SocketHelper {
         this.mSocketChat.onDisconnect()
     }
     listener = (socket) => {
-        // console.log(`${socket.handshake.query.model}  join`)
+        console.log(`${socket.handshake.query.model}  join`)
         this.mSocket.setSocket(socket)
         socket.on('call', this.mSocket.onCall)
         socket.on('clearUser', this.mSocket.clearUser)
